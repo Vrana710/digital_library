@@ -20,7 +20,10 @@ class Author(db.Model):
     birth_date = db.Column(db.Date, nullable=False)
     date_of_death = db.Column(db.Date, nullable=True)
 
-    def __init__(self, name, birth_date, date_of_death=None):
+    def __init__(self, 
+                 name, 
+                 birth_date, 
+                 date_of_death=None):
         """
         Initializes an Author instance.
         """
@@ -72,7 +75,12 @@ class Book(db.Model):
 
     author = db.relationship('Author', backref=db.backref('books', lazy=True))
 
-    def __init__(self, isbn, title, publication_year, author_id, rating=None):
+    def __init__(self, 
+                 isbn, 
+                 title, 
+                 publication_year, 
+                 author_id, 
+                 rating=None):
         """
         Initializes a Book instance.
         """

@@ -1,14 +1,18 @@
 import os
 import time
-import requests  # For calling external AI API
+from datetime import datetime
+
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import desc
-from datetime import datetime
+
+import requests  # For calling external AI API
+
 from data_models import db, Author, Book
 
 
 app = Flask(__name__)
+
 # Correct the file path construction
 file_path = os.path.join(os.getcwd(), "data", "library.sqlite")
 
@@ -17,6 +21,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + file_path
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
+
 
 @app.route('/add_author', methods=['GET', 'POST'])
 def add_author():
@@ -43,7 +48,8 @@ def add_author():
 
         try:
             birth_date = datetime.strptime(birth_date_str, '%Y-%m-%d').date()
-            date_of_death = datetime.strptime(date_of_death_str, '%Y-%m-%d').date() if date_of_death_str else None
+            date_of_death = datetime.strptime(date_of_death_str, 
+                                              '%Y-%m-%d').date() if date_of_death_str else None
         except ValueError:
             return "Incorrect date format. Please use yyyy-mm-dd."
 
@@ -98,7 +104,11 @@ def add_book_page():
             return render_template('add_book.html', authors=authors)
 
         # Create Book object and add to database
-        new_book = Book(isbn=isbn, title=title, publication_year=publication_year, author_id=author_id, rating=rating)
+        new_book = Book(isbn=isbn, 
+                        title=title, 
+                        publication_year=publication_year, 
+                        author_id=author_id, 
+                        rating=rating)
         db.session.add(new_book)
         db.session.commit()
 
@@ -106,7 +116,6 @@ def add_book_page():
         return redirect(url_for('home_page'))
 
     return render_template('add_book.html', authors=authors)
-
 
 
 @app.route('/book/<int:book_id>/delete', methods=['POST'])
@@ -185,7 +194,11 @@ def home_page():
 
     # Get all authors for display or use in other parts of the page
     authors = Author.query.all()
-    return render_template('home.html', books=books, authors=authors, sort_by=sort_by, message=message)
+    return render_template('home.html', 
+                           books=books, 
+                           authors=authors, 
+                           sort_by=sort_by, 
+                           message=message)
 
 
 @app.route('/update_author/<int:author_id>', methods=['GET', 'POST'])
@@ -217,7 +230,8 @@ def update_author(author_id):
 
         try:
             birth_date = datetime.strptime(birth_date_str, '%Y-%m-%d').date()
-            date_of_death = datetime.strptime(date_of_death_str, '%Y-%m-%d').date() if date_of_death_str else None
+            date_of_death = datetime.strptime(date_of_death_str, 
+                                              '%Y-%m-%d').date() if date_of_death_str else None
         except ValueError:
             flash("Incorrect date format. Please use yyyy-mm-dd.", 'danger')
             return render_template('update_author.html', author=author)
@@ -262,7 +276,9 @@ def update_book(book_id):
         # Validate input
         if not (isbn and title and publication_year and author_id):
             flash("Please fill out all fields correctly.", 'danger')
-            return render_template('update_book.html', book=book, authors=authors)
+            return render_template('update_book.html', 
+                                   book=book, 
+                                   authors=authors)
 
         # Update book details
         book.isbn = isbn
@@ -274,7 +290,10 @@ def update_book(book_id):
         flash(f"Book '{title}' successfully updated.", 'success')
         return redirect(url_for('home_page'))
 
-    return render_template('update_book.html', book=book, authors=authors)
+    return render_template('update_book.html', 
+                           book=book, 
+                           authors=authors)
+
 
 @app.route('/author/<int:author_id>/delete', methods=['POST'])
 def delete_author(author_id):
@@ -303,6 +322,31 @@ def delete_author(author_id):
 
 @app.route('/recommendations')
 def recommendations():
+    """
+    Fetches and displays a list of random horror books from an external API.
+
+    Makes a GET request to the RapidAPI endpoint for fetching ebooks in the horror genre.
+    Implements a retry mechanism in case of failures or timeouts.
+
+    URL and headers for the RapidAPI request are defined within the function.
+    Retry settings are also defined, including the maximum number of 
+    retries and the delay between retries.
+
+    The function initializes an empty list to store the fetched books.
+    It then iterates over the retry attempts, making the API request 
+    and handling any exceptions that occur.
+    If the request is successful (status code 200), the API response 
+    is directly assigned to the random_books list.
+    If the request fails or times out, appropriate error messages 
+    are displayed using Flask's flash function.
+
+    After all retry attempts or successful API response, 
+    the function renders the recommendations template,
+    passing the random_books list as a parameter.
+
+    Returns:
+        str: Rendered HTML template with a list of random horror books.
+    """
     # URL and headers for RapidAPI request
     api_url = "https://freebooks-api2.p.rapidapi.com/fetchEbooks/horror"
     headers = {
@@ -337,7 +381,6 @@ def recommendations():
 
     # Render the recommendations template, even if the list is empty
     return render_template('recommendations.html', books=random_books)
-
 
 
 if __name__ == "__main__":

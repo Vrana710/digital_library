@@ -14,7 +14,8 @@
 
   <div class="container mt-5">
     <h1 class="text-center">
-      <img src="../static/images/online-library.png" alt="Digital Library" height="40px" width="40px" class="animated-image"/>
+      <img src="../static/images/online-library.png" alt="Digital Library" 
+      height="40px" width="40px" class="animated-image"/>
       Digital Library
     </h1>
     <!-- Display system date and time -->
@@ -26,23 +27,28 @@
 
       <div class="mb-3">
         <label for="isbn" class="form-label">ISBN</label>
-        <input type="text" id="isbn" name="isbn" class="form-control" placeholder="Enter ISBN number (International Standard Book Number, unique for each book.)" required>
+        <input type="text" id="isbn" name="isbn" class="form-control" 
+        placeholder="Enter ISBN number (International Standard Book Number, unique for each book.)" required>
       </div>
 
       <div class="mb-3">
         <label for="title" class="form-label">Title</label>
-        <input type="text" id="title" name="title" class="form-control" placeholder="Enter book title" required>
+        <input type="text" id="title" name="title" class="form-control" 
+        placeholder="Enter book title" required>
       </div>
 
       <div class="mb-3">
         <label for="publication_year" class="form-label">Publication Year</label>
-        <input type="number" id="publication_year" name="publication_year" class="form-control" placeholder="Enter publication year" required>
+        <input type="number" id="publication_year" name="publication_year" 
+        class="form-control" placeholder="Enter publication year" required>
       </div>
 
       <div class="mb-3">
         <label for="rating" class="form-label">Rating (Optional, 1-10)</label>
-        <input type="number" id="rating" name="rating" class="form-control" min="1" max="10" step="1" placeholder="Enter a rating between 1 and 10">
-        <small class="form-text text-muted">If you don't want to rate the book, leave this field blank.</small>
+        <input type="number" id="rating" name="rating" class="form-control" 
+        min="1" max="10" step="1" placeholder="Enter a rating between 1 and 10">
+        <small class="form-text text-muted">
+          If you don't want to rate the book, leave this field blank.</small>
       </div>
 
       <div class="mb-3">

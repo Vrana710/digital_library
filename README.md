@@ -66,6 +66,14 @@ Welcome to the Digital Library project! This application allows users to manage 
 
    Open your web browser and navigate to `http://127.0.0.1:5000/`.
 
+### Preview
+
+![Home](./static/images/home.png)
+
+![Add Author](./static/images/Add_Author.png)
+
+![Add Book](./static/images/Add_Book.png)
+
 ### Usage
 
 - **Add Authors:** Navigate to `/add_author` to add new authors to the library.

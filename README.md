@@ -70,9 +70,9 @@ Welcome to the Digital Library project! This application allows users to manage 
 
 ![Home](./static/images/home.png)
 
-![Add Author](./static/images/Add_Author.png)
+![Add Author](./static/images/addAuthor.png)
 
-![Add Book](./static/images/Add_Book.png)
+![Add Book](./static/images/addBook.png)
 
 ### Usage
 

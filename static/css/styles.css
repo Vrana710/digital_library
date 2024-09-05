@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+  }
+  
+  form {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  button {
+    margin-bottom: 20px;
+  }
+  
+  .message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+  
+  .book {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .delete-form button {
+    margin-left: 10px;
+  }
+  
+
+   /* Animation definition */
+   @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-30px);
+    }
+    60% {
+      transform: translateY(-15px);
+    }
+  }
+
+  /* Apply animation to the image */
+  .animated-image {
+    animation: bounce 2s infinite;
+  }
+
+  /* display date time */
+  .datetime {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+  }
+
+  /* Footer styling */
+  footer {
+    background-color: #007BFF;
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #ddd;
+  }
+
+  footer p {
+    margin: 0;
+    color: #ddd;
+  }

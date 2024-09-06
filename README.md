@@ -94,10 +94,8 @@ Welcome to the Digital Library project! This application allows users to manage 
 - `update_book.html`: Form for updating existing books.
 - `recommendations.html`: Displays recommendations for books
 
-### Bonus Features (Optional)
+### Additional Features
 
-- **UI Redesign:** Customize the user interface using Bootstrap and custom styles.
-- **Detail Pages:** Implement detail pages to view more information about specific books or authors.
 - **Book Ratings:** Introduce a rating system for books to enhance the user experience.
 - **AI-based Book Recommendations:** Integrate AI algorithms to provide book recommendations based on the user's collection or preferences.
 
